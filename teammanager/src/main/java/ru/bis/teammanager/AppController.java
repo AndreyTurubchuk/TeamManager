@@ -32,7 +32,12 @@ public class AppController {
 
     @RequestMapping("/hello")
     public String hello2(Model model2, @RequestParam(value = "name", required = false, defaultValue = "Andrey") String name) {
-        model2.addAttribute("message", "Andrey");
+        Person person = new Person("Andrey", "Turubchuk");
+        Person person2 = new Person("Andrey2", "Turubchuk2");
+        personService.saveUser(person);
+        personService.saveUser(person2);
+        List<Person> personList = personService.getAll();
+        model2.addAttribute("personList", personList);
         return "personList";
     }
 
@@ -45,13 +50,13 @@ public class AppController {
         return "personList";
     }
 
-/*    @GetMapping("/save")
+    @GetMapping("/save")
     public void saveUser() {
         Person person = new Person("Andrey", "Turubchuk");
         Person person2 = new Person("Andrey2", "Turubchuk2");
         personService.saveUser(person);
         personService.saveUser(person2);
-    }*/
+    }
 
 
 }
