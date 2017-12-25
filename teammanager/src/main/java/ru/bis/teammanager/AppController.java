@@ -2,39 +2,56 @@ package ru.bis.teammanager;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import ru.bis.teammanager.model.User;
-import ru.bis.teammanager.service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import ru.bis.teammanager.model.Person;
+import ru.bis.teammanager.service.PersonService;
 
 import java.util.List;
 
 
-@RestController
-@RequestMapping(value = "/teammanager/rest/users")
+@Controller
+//@RequestMapping(value = "/teammanager/person")
 public class AppController {
 
     @Autowired
-    private UserService userService;
+    private PersonService personService;
 
-    @GetMapping("/all")
-    public List<User> getAll() {
-        return userService.getAll();
+    /*
+        @GetMapping("/all")
+        public List<Person> getAll() {
+            return personService.getAll();
+        }
+
+        @GetMapping("/")
+        public String getAll(Model model) {
+           return "index";
+        }
+    */
+
+    @RequestMapping("/hello")
+    public String hello2(Model model2, @RequestParam(value = "name", required = false, defaultValue = "Andrey") String name) {
+        model2.addAttribute("message", "Andrey");
+        return "personList";
     }
 
-    @GetMapping("/save")
+
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String showUsers(Model model) {
+        List<Person> personList = personService.getAll();
+        model.addAttribute("personList", personList);
+        return "personList";
+    }
+
+/*    @GetMapping("/save")
     public void saveUser() {
-        User user = new User("Andrey", "Turubchuk");
-        User user2 = new User("Andrey2", "Turubchuk2");
-        userService.saveUser(user);
-        userService.saveUser(user2);
-    }
-
-
-
-
+        Person person = new Person("Andrey", "Turubchuk");
+        Person person2 = new Person("Andrey2", "Turubchuk2");
+        personService.saveUser(person);
+        personService.saveUser(person2);
+    }*/
 
 
 }
