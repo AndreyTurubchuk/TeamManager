@@ -18,24 +18,12 @@ public class AppController {
     @Autowired
     private PersonService personService;
 
-    /*
-        @GetMapping("/all")
-        public List<Person> getAll() {
-            return personService.getAll();
-        }
-
-        @GetMapping("/")
-        public String getAll(Model model) {
-           return "index";
-        }
-    */
-
     @RequestMapping("/hello")
     public String hello2(Model model2, @RequestParam(value = "name", required = false, defaultValue = "Andrey") String name) {
         Person person = new Person("Andrey", "Turubchuk");
         Person person2 = new Person("Andrey2", "Turubchuk2");
-        personService.saveUser(person);
-        personService.saveUser(person2);
+        personService.savePerson(person);
+        personService.savePerson(person2);
         List<Person> personList = personService.getAll();
         model2.addAttribute("personList", personList);
         return "personList";
@@ -54,8 +42,8 @@ public class AppController {
     public void saveUser() {
         Person person = new Person("Andrey", "Turubchuk");
         Person person2 = new Person("Andrey2", "Turubchuk2");
-        personService.saveUser(person);
-        personService.saveUser(person2);
+        personService.savePerson(person);
+        personService.savePerson(person2);
     }
 
 
