@@ -1,10 +1,21 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:p="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<p th:text="'Welcome to Spring Boot Maven JSP' + ${message}"></p>
+
+<div class="container">
+    <table>
+        <th:block th:each="person : ${personList}">
+            <tr>
+                <td th:text="${person.name}">...</td>
+                <td th:text="${person.lastName}">...</td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+
 </body>
 </html>
