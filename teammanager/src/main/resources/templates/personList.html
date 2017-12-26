@@ -8,7 +8,7 @@
 <body>
     <div class="container">
 
-        <a th:href="@{/person/list}">НОВЫЙ </a>
+        <a th:href="@{/person/add}">НОВЫЙ </a>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -20,9 +20,17 @@
             </thead>
             <tbody>
             <tr th:each="person : ${personList}">
-                <td th:text="${person.id}"></td>
-                <td th:text="${person.name}"></td>
-                <td th:text="${person.lastName}"></td>
+                <td th:text="${person.id}" th:name="id"></td>
+
+
+                <td>
+                    <a th:title="Редактирование"
+                       th:href="@{/person/edit/{id}(id=${person.id})}"
+                       th:text="${person.name}">
+                    </a>
+                </td>
+                <td th:text="${person.name}" th:name="name"> </td>
+                <td th:text="${person.lastName}" th:name="lastname"></td>
                 <td>
                     <a th:href="@{/person/delete/{id}(id=${person.id})}">DELETE </a>
                 </td>
