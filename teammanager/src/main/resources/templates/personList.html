@@ -1,23 +1,30 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:p="http://www.w3.org/1999/html">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 </head>
+
 <body>
+    <div class="container">
 
-<div class="container">
-    <table>
-        <th:block th:each="person : ${personList}">
+        <a th:href="@{/person/hello}">НОВЫЙ </a>
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <td th:text="${person.name}">...</td>
-                <td th:text="${person.lastName}">...</td>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Lastname</th>
             </tr>
-        </th:block>
-    </table>
-</div>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+            </thead>
+            <tbody>
+            <tr th:each="person : ${personList}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.name}"></td>
+                <td th:text="${person.lastName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
