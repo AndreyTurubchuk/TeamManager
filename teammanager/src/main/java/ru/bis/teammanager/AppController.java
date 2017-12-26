@@ -32,6 +32,36 @@ public class AppController {
         return "redirect:/person/list";
     }
 
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String add() {
+        return "personAdd";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add2(Person person) {
+        personService.savePerson(person);
+        return "redirect:/person/list";
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable long id, Model model4) {
+        Person person = personService.getOne(id);
+        model4.addAttribute("person", person);
+        return "personEdit";
+    }
+
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String edit(Person person) {
+       //personService.saveAndFlushPerson(person);
+        personService.flushPerson();
+        return "redirect:/person/list";
+    }
+
+
+
+
+
     @RequestMapping(value = "/")
     public String createPerson(Model model2) {
         Person person = new Person("Andrey", "Turubchuk");
