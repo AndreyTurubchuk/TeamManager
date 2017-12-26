@@ -19,36 +19,29 @@ public class AppController {
     @Autowired
     private PersonService personService;
 
-    @RequestMapping({"", "/", "/hello"})
-    public String hello2(Model model2, @RequestParam(value = "name", required = false, defaultValue = "Andrey") String name) {
+    @RequestMapping({"/list"})
+    public String personList(Model model) {
+        List<Person> personList = personService.getAll();
+        model.addAttribute("personList", personList);
+        return "personList";
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String delete(@PathVariable long id) {
+        personService.delete(id);
+        return "redirect:/person/list";
+    }
+
+    @RequestMapping(value = "/")
+    public String createPerson(Model model2) {
         Person person = new Person("Andrey", "Turubchuk");
         Person person2 = new Person("Andrey2", "Turubchuk2");
         personService.savePerson(person);
         personService.savePerson(person2);
         List<Person> personList = personService.getAll();
         model2.addAttribute("personList", personList);
-        //return "personList";
-        return "footer2";
-    }
-
-
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String showUsers(Model model) {
-        List<Person> personList = personService.getAll();
-        model.addAttribute("personList", personList);
         return "personList";
     }
-
-    @GetMapping("/save")
-    public void saveUser() {
-        Person person = new Person("Andrey", "Turubchuk");
-        Person person2 = new Person("Andrey2", "Turubchuk2");
-        personService.savePerson(person);
-        personService.savePerson(person2);
-    }
-
-
 }
 
 
