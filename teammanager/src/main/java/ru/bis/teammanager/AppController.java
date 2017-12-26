@@ -12,13 +12,14 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping(value = "/person")
 //@RequestMapping(value = "/teammanager/person")
 public class AppController {
 
     @Autowired
     private PersonService personService;
 
-    @RequestMapping("/hello")
+    @RequestMapping({"", "/", "/hello"})
     public String hello2(Model model2, @RequestParam(value = "name", required = false, defaultValue = "Andrey") String name) {
         Person person = new Person("Andrey", "Turubchuk");
         Person person2 = new Person("Andrey2", "Turubchuk2");
@@ -26,7 +27,8 @@ public class AppController {
         personService.savePerson(person2);
         List<Person> personList = personService.getAll();
         model2.addAttribute("personList", personList);
-        return "personList";
+        //return "personList";
+        return "footer2";
     }
 
 
