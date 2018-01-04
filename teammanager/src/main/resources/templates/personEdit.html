@@ -7,9 +7,12 @@
 
 <body>
     <div class="container">
-
-        <form th:action="@{/person/edit}" th:name="personEditForm" th:method="post">
+        <form th:action="@{|/person/edit/${person.id}|}" th:object="${person}" th:name="personEditForm" th:method="post">
             <div class="form-group">
+                <label>ID</label>
+                 <textarea th:disabled="disabled" th:type="hidden" name="id" th:text="${person.id}" th:value="${person.id}" placeholder="#" class="form-control"></textarea>
+            </div>
+             <div class="form-group">
                 <label>Name</label>
                 <textarea name="name" th:text="${person.name}" placeholder="Input your name here..." class="form-control"></textarea>
             </div>
