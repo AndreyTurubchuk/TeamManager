@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.bis.teammanager.model.Person;
+import ru.bis.teammanager.repositories.PersonRepository;
 import ru.bis.teammanager.service.PersonService;
 
 import java.util.List;
@@ -44,23 +45,17 @@ public class AppController {
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String edit(@PathVariable long id, Model model4) {
+    public String edit(@PathVariable Long id, Model model4) {
         Person person = personService.getOne(id);
         model4.addAttribute("person", person);
         return "personEdit";
     }
 
-
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String edit(Person person) {
-       //personService.saveAndFlushPerson(person);
-        personService.flushPerson();
+        personService.savePerson(person);
         return "redirect:/person/list";
     }
-
-
-
-
 
     @RequestMapping(value = "/")
     public String createPerson(Model model2) {
