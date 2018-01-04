@@ -16,16 +16,6 @@ public class PersonServiceImpl implements PersonService {
     private PersonRepository personRepository;
 
     @Override
-    public void saveAndFlushPerson(Person person) {
-        personRepository.saveAndFlush(person);
-    }
-
-    @Override
-    public void flushPerson() {
-        personRepository.flush();
-    }
-
-    @Override
     public void savePerson(Person person) {
         personRepository.save(person);
     }
