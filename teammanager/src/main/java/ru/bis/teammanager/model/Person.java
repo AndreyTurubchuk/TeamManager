@@ -3,7 +3,7 @@ package ru.bis.teammanager.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "person")
 public class Person {
 
     @Id
