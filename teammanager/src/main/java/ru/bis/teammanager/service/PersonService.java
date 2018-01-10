@@ -2,7 +2,9 @@ package ru.bis.teammanager.service;
 
 import ru.bis.teammanager.model.Person;
 
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+
 
 public interface PersonService {
    List<Person> getAll();
@@ -10,3 +12,4 @@ public interface PersonService {
    void savePerson(Person person);
    void delete(long id);
    }
+

@@ -1,40 +1,55 @@
 package ru.bis.teammanager.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "person")
+@Table(name = "PERSONS")
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "person_id")
+    private long personId;
 
-    private long id;
-    private String name;
+
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "email_address")
+    private String emailAddress;
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Letter> letterList = new ArrayList<>();
+
+    public Person(String firstName, String lastName, String emailAddress) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+    }
 
     public Person() {
     }
 
-    public Person(String name, String lastName) {
-        this.name = name;
-        this.lastName = lastName;
+    public long getPersonId() {
+        return personId;
     }
 
-    public long getId() {
-        return id;
+    public void setPersonId(long personId) {
+        this.personId = personId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -45,12 +60,21 @@ public class Person {
         this.lastName = lastName;
     }
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "personId=" + personId +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
                 '}';
     }
 }

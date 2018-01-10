@@ -2,11 +2,13 @@ package ru.bis.teammanager.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.bis.teammanager.model.Person;
 import ru.bis.teammanager.repositories.PersonRepository;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class PersonServiceImpl implements PersonService {
     private final static String STATUS_OK = "OK";

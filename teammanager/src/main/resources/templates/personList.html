@@ -13,24 +13,29 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Lastname</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email Address</th>
                 <th>Delete</th>
+                <th>View Message</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="person : ${personList}">
-                <td th:text="${person.id}" th:name="id"></td>
+                <td th:text="${person.personId}" th:name="id"></td>
                 <td>
                     <a th:title="Редактирование"
-                       th:href="@{/person/edit/{id}(id=${person.id})}"
-                       th:text="${person.name}">
+                       th:href="@{/person/edit/{id}(id=${person.personId})}"
+                       th:text="${person.firstName}">
                     </a>
                 </td>
-                <!--<td th:text="${person.name}" th:name="name"> </td>-->
-                <td th:text="${person.lastName}" th:name="lastname"></td>
+                <td th:text="${person.lastName}" th:name="lastName"></td>
+                <td th:text="${person.emailAddress}" th:name="emailAddress"></td>
                 <td>
-                    <a th:href="@{/person/delete/{id}(id=${person.id})}">DELETE </a>
+                    <a th:href="@{/person/delete/{personId}(personId=${person.personId})}">DELETE </a>
+                </td>
+                <td>
+                    <a th:href="@{/person/view/{personId}(personId=${person.personId})}">VIEW </a>
                 </td>
             </tr>
             </tbody>

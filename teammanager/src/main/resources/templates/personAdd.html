@@ -11,12 +11,17 @@
         <form th:action="@{/person/add}" th:name="personAddForm" th:method="post">
             <div class="form-group">
                 <label>Name</label>
-                <textarea name="name" placeholder="Input your name here..." class="form-control"></textarea>
+                <textarea name="firstName" placeholder="Input your name here..." class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <label>Lastname</label>
                 <textarea name="lastName" placeholder="Input your lastname here..." class="form-control"></textarea>
             </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <textarea name="emailAddress" placeholder="Input your emailAddress here..." class="form-control"></textarea>
+            </div>
+
             <a onclick="document.forms['personAddForm'].submit();" class="btn-save pull-left">Save</a>
             <a th:href="@{/person/list}" class="btn-close pull-right">Cancel</a>
         </form>
