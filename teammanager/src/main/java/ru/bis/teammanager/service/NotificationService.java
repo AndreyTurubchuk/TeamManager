@@ -23,7 +23,7 @@ public class NotificationService {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(person.getEmailAddress());
-        mailMessage.setFrom("antur1977@mail.ru");
+        mailMessage.setFrom("sokoldemian@mail.ru");
         mailMessage.setTo(letter.getTo());
         mailMessage.setSubject(letter.getSubject());
         mailMessage.setText(letter.getText());
