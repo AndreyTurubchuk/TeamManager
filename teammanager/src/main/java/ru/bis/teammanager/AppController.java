@@ -22,6 +22,9 @@ import java.util.List;
 //@RequestMapping(value = "/teammanager/person")
 public class AppController {
 
+    private final static String MESSAGE_HIRED = "You are hired";
+    private final static String MESSAGE_SUBJECT = "Message";
+
     @Autowired
     private PersonService personService;
 
@@ -53,8 +56,13 @@ public class AppController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add2(Person person) {
         personService.savePerson(person);
-        Letter letter2 = new Letter("antur1977@mail.ru", "antur1977@mail.ru", "Main Message", "This is s BIS", person);
-        letterService.saveLetter(letter2);
+        Letter letter = new Letter("sokoldemian1990@mail.ru", person.getEmailAddress(), MESSAGE_SUBJECT, MESSAGE_HIRED, person);
+     //   letterService.saveLetter(letter);
+        try {
+            notificationService.sendNotification(person, letter);
+        } catch (MailException e) {
+            e.printStackTrace();
+        }
         return "redirect:/person/list";
     }
 
