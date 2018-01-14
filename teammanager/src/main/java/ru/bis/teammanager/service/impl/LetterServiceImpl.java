@@ -1,4 +1,4 @@
-package ru.bis.teammanager.service;
+package ru.bis.teammanager.service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.bis.teammanager.model.Letter;
 import ru.bis.teammanager.model.Person;
 import ru.bis.teammanager.repositories.LetterRepository;
-import ru.bis.teammanager.repositories.PersonRepository;
+import ru.bis.teammanager.service.LetterService;
 
 import java.util.List;
 
@@ -16,19 +16,13 @@ import java.util.List;
 public class LetterServiceImpl implements LetterService {
 
     @Autowired
-    private PersonRepository personRepository;
-
-    @Autowired
     private LetterRepository letterRepository;
 
     @Override
-    public void saveLetter(Letter letter) {
+    public Letter createLetter(String personEmailAddress, String subject, String message, Person person) {
+        Letter letter = new Letter(personEmailAddress, subject, message, person);
         letterRepository.save(letter);
-    }
-
-    @Override
-    public List<Letter> getLetterByPerson(Person person) {
-        return null;
+        return letter;
     }
 
     @Override

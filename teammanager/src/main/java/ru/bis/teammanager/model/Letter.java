@@ -10,7 +10,6 @@ public class Letter {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JoinColumn(name = "LETTER_ID")
     private long letterId;
-    private String fromP;
     private String to;
     private String subject;
     private String text;
@@ -19,8 +18,7 @@ public class Letter {
     @JoinColumn(name = "person_id")
     private Person person;
 
-    public Letter(String fromP, String to, String subject, String text, Person person) {
-        this.fromP = fromP;
+    public Letter(String to, String subject, String text, Person person) {
         this.to = to;
         this.subject = subject;
         this.text = text;
@@ -36,14 +34,6 @@ public class Letter {
 
     public void setLetterId(long letterId) {
         this.letterId = letterId;
-    }
-
-    public String getFromP() {
-        return fromP;
-    }
-
-    public void setFromP(String fromP) {
-        this.fromP = fromP;
     }
 
     public String getTo() {
