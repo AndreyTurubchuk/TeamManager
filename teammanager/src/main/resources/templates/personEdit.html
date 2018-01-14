@@ -7,19 +7,25 @@
 
 <body>
     <div class="container">
-        <form th:action="@{|/person/edit/${person.id}|}" th:object="${person}" th:name="personEditForm" th:method="post">
+        <form th:action="@{|/person/edit/${id}|}" th:object="${person}" th:name="personEditForm" th:method="post">
             <div class="form-group">
                 <label>ID</label>
-                 <textarea th:disabled="disabled" th:type="hidden" name="id" th:text="${person.id}" th:value="${person.id}" placeholder="#" class="form-control"></textarea>
+                 <textarea th:disabled="disabled" th:type="hidden" name="id" th:text="${person.personId}" th:value="${person.personId}" placeholder="#" class="form-control"></textarea>
             </div>
              <div class="form-group">
                 <label>Name</label>
-                <textarea name="name" th:text="${person.name}" placeholder="Input your name here..." class="form-control"></textarea>
+                <textarea name="firstName" th:text="${person.firstName}" placeholder="Input your name here..." class="form-control"></textarea>
             </div>
             <div class="form-group">
                 <label>Lastname</label>
                 <textarea name="lastName" th:text="${person.lastName}" placeholder="Input your lastname here..." class="form-control"></textarea>
             </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <textarea name="emailAddress" th:text="${person.emailAddress}" placeholder="Input your emailAddress here..." class="form-control"></textarea>
+            </div>
+
             <a onclick="document.forms['personEditForm'].submit();" class="btn-save pull-left">Save</a>
             <a th:href="@{/person/list}" class="btn-close pull-right">Cancel</a>
         </form>

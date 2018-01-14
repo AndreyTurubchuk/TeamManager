@@ -32,10 +32,10 @@
                 <td th:text="${person.lastName}" th:name="lastName"></td>
                 <td th:text="${person.emailAddress}" th:name="emailAddress"></td>
                 <td>
-                    <a th:href="@{/person/delete/{personId}(personId=${person.personId})}">DELETE </a>
+                    <a th:href="@{/person/delete/{id}(id=${person.personId})}">DELETE </a>
                 </td>
                 <td>
-                    <a th:href="@{/person/view/{personId}(personId=${person.personId})}">VIEW </a>
+                    <a th:href="@{/person/view/{id}(id=${person.personId})}">VIEW </a>
                 </td>
             </tr>
             </tbody>

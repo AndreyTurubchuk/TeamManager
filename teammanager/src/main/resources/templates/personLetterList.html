@@ -7,7 +7,7 @@
 
 <body>
 <div class="container">
-    <p th:text="${personFullName}"></p>
+    <p th:text="'Person: ' + ${personFullName}"></p>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -22,6 +22,7 @@
         </tr>
         </tbody>
     </table>
+    <a th:href="@{/person/list}" class="btn-close pull-right">Back</a>
 </div>
 </body>
 </html>
