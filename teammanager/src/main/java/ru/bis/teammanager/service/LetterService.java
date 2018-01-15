@@ -7,6 +7,6 @@ import java.util.List;
 
 
 public interface LetterService {
-    Letter createLetter(String personEmailAddress, String subject, String message, Person person);
+    Letter createLetter(Person person, String subject, String message);
     List<Letter> findByTo(String to);
 }
