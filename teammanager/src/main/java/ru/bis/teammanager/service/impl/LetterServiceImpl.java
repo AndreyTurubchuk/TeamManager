@@ -19,8 +19,8 @@ public class LetterServiceImpl implements LetterService {
     private LetterRepository letterRepository;
 
     @Override
-    public Letter createLetter(String personEmailAddress, String subject, String message, Person person) {
-        Letter letter = new Letter(personEmailAddress, subject, message, person);
+    public Letter createLetter(Person person, String subject, String message) {
+        Letter letter = new Letter(person.getEmailAddress(), subject, message, person);
         letterRepository.save(letter);
         return letter;
     }
