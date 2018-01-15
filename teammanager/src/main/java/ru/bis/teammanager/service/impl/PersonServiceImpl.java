@@ -34,7 +34,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void savePerson(Person person) {
         personRepository.save(person);
-        Letter letter = letterService.createLetter(person.getEmailAddress(), MESSAGE_SUBJECT, MESSAGE_HIRED, person);
+        Letter letter = letterService.createLetter(person, MESSAGE_SUBJECT, MESSAGE_HIRED);
         try {
             notificationService.sendNotification(person, letter);
         } catch (MailException e) {
@@ -49,7 +49,7 @@ public class PersonServiceImpl implements PersonService {
         person.setLastName(personDetails.getLastName());
         person.setEmailAddress(personDetails.getEmailAddress());
         personRepository.save(person);
-        Letter letter = letterService.createLetter(person.getEmailAddress(), MESSAGE_SUBJECT, MESSAGE_EDIT, person);
+        Letter letter = letterService.createLetter(person, MESSAGE_SUBJECT, MESSAGE_EDIT);
         try {
             notificationService.sendNotification(person, letter);
         } catch (MailException e) {
@@ -60,7 +60,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void delete(long id) {
         Person person = personRepository.getOne(id);
-        Letter letter = letterService.createLetter(person.getEmailAddress(), MESSAGE_SUBJECT, MESSAGE_FIRED, person);
+        Letter letter = letterService.createLetter(person, MESSAGE_SUBJECT, MESSAGE_FIRED);
         try {
             notificationService.sendNotification(person, letter);
         } catch (MailException e) {
