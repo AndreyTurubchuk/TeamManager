@@ -5,5 +5,5 @@ import ru.bis.teammanager.model.Letter;
 import ru.bis.teammanager.model.Person;
 
 public interface NotificationService {
-    void sendNotification(Person person, Letter letter) throws MailException;
+    void sendNotification(Person person, Letter letter);
 }
