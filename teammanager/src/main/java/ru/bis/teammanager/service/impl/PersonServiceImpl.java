@@ -14,7 +14,7 @@ import ru.bis.teammanager.service.PersonService;
 
 import java.util.List;
 
-@Transactional
+//@Transactional
 @Service
 public class PersonServiceImpl implements PersonService {
     private final static String MESSAGE_HIRED = "You are hired";
@@ -35,12 +35,9 @@ public class PersonServiceImpl implements PersonService {
     public void savePerson(Person person) {
         personRepository.save(person);
         Letter letter = letterService.createLetter(person, MESSAGE_SUBJECT, MESSAGE_HIRED);
-        try {
-            notificationService.sendNotification(person, letter);
-        } catch (MailException e) {
-            e.printStackTrace();
-        }
+        notificationService.sendNotification(person, letter);
     }
+
 
     @Override
     public void editPerson(long id, Person personDetails) {
@@ -50,25 +47,17 @@ public class PersonServiceImpl implements PersonService {
         person.setEmailAddress(personDetails.getEmailAddress());
         personRepository.save(person);
         Letter letter = letterService.createLetter(person, MESSAGE_SUBJECT, MESSAGE_EDIT);
-        try {
-            notificationService.sendNotification(person, letter);
-        } catch (MailException e) {
-            e.printStackTrace();
-        }
+        notificationService.sendNotification(person, letter);
     }
 
     @Override
     public void delete(long id) {
         Person person = personRepository.getOne(id);
         Letter letter = letterService.createLetter(person, MESSAGE_SUBJECT, MESSAGE_FIRED);
-        try {
-            notificationService.sendNotification(person, letter);
-        } catch (MailException e) {
-            e.printStackTrace();
-        }
         personRepository.delete(id);
-    }
+        notificationService.sendNotification(person, letter);
 
+    }
 
 
     @Override
