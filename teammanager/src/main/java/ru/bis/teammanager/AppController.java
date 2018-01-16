@@ -6,6 +6,7 @@ import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.bis.teammanager.model.Letter;
 import ru.bis.teammanager.model.Person;
 import ru.bis.teammanager.service.LetterService;
@@ -45,8 +46,14 @@ public class AppController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(Person person) {
-        personService.savePerson(person);
+       personService.savePerson(person);
         return "redirect:/person/list";
+ }
+
+    @ExceptionHandler(MailException.class)
+    public String err(Model model, Exception ex){
+        model.addAttribute("texterror", ex.getMessage());
+        return "error";
     }
 
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
