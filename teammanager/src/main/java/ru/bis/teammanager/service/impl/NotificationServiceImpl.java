@@ -24,7 +24,7 @@ public class NotificationServiceImpl implements NotificationService {
         this.personService = personService;
     }
 
-    public void sendNotification(Person person, Letter letter) throws MailException {
+    public void sendNotification(Person person, Letter letter) {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(person.getEmailAddress());
