@@ -11,4 +11,4 @@
 4.	Оформить приложение можно в виде тестов. Но большим плюсом будет реализованный web интерфейс, соответствующий CRUD для операций TeamManager-сервиса (таблица и кнопки).
 
 
-SpringBoot, Spring Data, Hibernate, H2, MailService, H2, thymeleaf,, Gradle
+SpringBoot, Spring Data, Hibernate, H2, MailService, H2, thymeleaf,Gradle
