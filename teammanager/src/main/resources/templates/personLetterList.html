@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+</head>
+
+<body>
+<div class="container">
+    <p th:text="'Person: ' + ${personFullName}"></p>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Message</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="letter : ${personLetterList}">
+            <td th:text="${letter.letterId}" th:name="id"></td>
+            <td th:text="${letter.text}" th:name="text"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/person/list}" class="btn-close pull-right">Back</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+</head>
+
+<body>
+    <div class="container">
+
+        <a th:href="@{/person/add}">НОВЫЙ </a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email Address</th>
+                <th>Delete</th>
+                <th>View Message</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person : ${personList}">
+                <td th:text="${person.personId}" th:name="id"></td>
+                <td>
+                    <a th:title="Редактирование"
+                       th:href="@{/person/edit/{id}(id=${person.personId})}"
+                       th:text="${person.firstName}">
+                    </a>
+                </td>
+                <td th:text="${person.lastName}" th:name="lastName"></td>
+                <td th:text="${person.emailAddress}" th:name="emailAddress"></td>
+                <td>
+                    <a th:href="@{/person/delete/{id}(id=${person.personId})}">DELETE </a>
+                </td>
+                <td>
+                    <a th:href="@{/person/view/{id}(id=${person.personId})}">VIEW </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
